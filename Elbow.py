@@ -14,6 +14,7 @@ def elbow(X_train, X_test, y_train, y_test, lower_k, upper_k, get_predictions=Fa
         error_rate.append(mean(predictions != y_test))
     best_k = lower_k + array(error_rate).argmin()
     print(f'K value with least error is: {best_k}')
+    
     if show_plot:
         plt.figure(figsize=(10, 6))
         plt.xlabel('K values')
@@ -21,6 +22,7 @@ def elbow(X_train, X_test, y_train, y_test, lower_k, upper_k, get_predictions=Fa
         plt.title('K values vs. Error rates')
         plt.plot(range(lower_k, upper_k + 1), error_rate, marker='o', markerfacecolor='green', markersize=10)
         plt.show()
+        
     if get_predictions:
         knn = KNeighborsClassifier(n_neighbors=best_k)
         knn.fit(X_train, y_train)
